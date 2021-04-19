@@ -16,7 +16,7 @@ namespace ConsoleApp1
             Thread.Sleep(5000);
             Console.WriteLine("До новых встреч!");
             Console.ReadKey();
-            
+
             // string line = Console.ReadLine();
         }
     }
