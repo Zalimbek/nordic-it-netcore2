@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>HelloWorldApp</name>
+    </assembly>
+    <members>
+        <member name="T:HelloWorldApp.Program">
+            <summary>
+            The main entry point
+            </summary>
+        </member>
+    </members>
+</doc>
