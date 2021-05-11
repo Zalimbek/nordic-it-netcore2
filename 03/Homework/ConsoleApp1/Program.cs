@@ -7,8 +7,8 @@ namespace ConsoleApp1
 	{
 		static void Main(string[] args)
 		{
+			string[] names = new string[3];
 			Console.WriteLine("Please enter the first name:");
-			string[] names=new string[3];
 			names[0]=Console.ReadLine();
 			Console.WriteLine("Please enter the second name:");
 			names[1] = Console.ReadLine();

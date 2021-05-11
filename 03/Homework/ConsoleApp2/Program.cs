@@ -26,6 +26,7 @@ namespace ConsoleApp1
 				rows[j] = j + 1;
 				Console.WriteLine($"Row: { rows[j]}");
 			}
+
 			string Tabl = "";
 
 			for (int i = 0; i < columns.Length; i++)
@@ -34,6 +35,7 @@ namespace ConsoleApp1
 				{
 					Tabl += "\t" + columns[i] * rows[j];
 				}
+
 				Tabl += "\n";
 			}
 
