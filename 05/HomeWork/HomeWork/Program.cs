@@ -18,6 +18,8 @@ namespace HomeWork
 
 			Console.WriteLine(" Введите тип фигуры (1 круг, 2 равносторонний треугольник, 3 прямоугольник): ");
 			int figureType = 0;
+			double S = 0;
+			double P = 0;
 
 			try
 			{
@@ -44,11 +46,8 @@ namespace HomeWork
 					throw;
 				}
 
-				var S = Math.Round(Math.PI * Math.Pow(diametr / 2, 2), 2);
-				var P = Math.Round(Math.PI * diametr, 2);
-
-				Console.WriteLine($"Площадь поверхности: {S}");
-				Console.WriteLine($"Длина периметра: {P}");
+				S = Math.Round(Math.PI * Math.Pow(diametr / 2, 2), 2);
+				P = Math.Round(Math.PI * diametr, 2);
 			}
 			else if (figureType == (int)Figure.Triangle)
 			{
@@ -65,13 +64,10 @@ namespace HomeWork
 					throw;
 				}
 
-				var S = Math.Round(Math.Sqrt(3) / 4 * Math.Pow(storona, 2), 2);
-				var P = Math.Round(3 * storona, 2);
-
-				Console.WriteLine($"Площадь поверхности: {S}");
-				Console.WriteLine($"Длина периметра: {P}");
+				S = Math.Round(Math.Sqrt(3) / 4 * Math.Pow(storona, 2), 2);
+				P = Math.Round(3 * storona, 2);
 			}
-			else
+			else if (figureType== (int)Figure.Rectangle)
 			{
 				Console.WriteLine("Введите длину прямоугольника: ");
 				float storona = 0;
@@ -98,13 +94,16 @@ namespace HomeWork
 					Console.WriteLine("Ошибка! Введено нечисловое значение!");
 					throw;
 				}
-
-				var S = Math.Round(visota * storona, 2);
-				var P = Math.Round(visota + storona, 2);
-
-				Console.WriteLine($"Площадь поверхности: {S}");
-				Console.WriteLine($"Длина периметра: {P}");
+				S = Math.Round(visota * storona, 2);
+				P = Math.Round(visota + storona, 2);
 			}
+			else
+			{
+				Console.WriteLine("Вы ввели неверное значение");
+			}
+			Console.WriteLine($"Площадь поверхности: {S}");
+			Console.WriteLine($"Длина периметра: {P}");
+
 		}
 	}
 }
