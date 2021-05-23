@@ -8,9 +8,10 @@ namespace ConsoleApp1
 		{
 			Int64 number = 0;
 			int counter = 0;
+			int evenCounter = 0;
 			string numberStr = string.Empty;
 
-			Console.WriteLine("Enter a positive natural number not greater than 2 mrd: ");
+			Console.WriteLine("Enter a positive natural number less or equal 2 mrd: ");
 			numberStr = Console.ReadLine();
 
 			try
@@ -28,27 +29,36 @@ namespace ConsoleApp1
 				throw;
 			}
 
-			if (number >= 2000000000 || number <= 1)
+			if (number > 2000000000 || number < 1)
 			{
 				var exception = new Exception("Enter a valid number");
 				throw exception;
 			}
 			else
 			{
-				Int64 individualFactor = 0;
-				Int64 tennerFactor = Convert.ToInt64(Math.Pow(10, numberStr.Length));
-
-				do
+				string[] digits = new string[numberStr.Length];
+				for (int i = 0; i < numberStr.Length; i++)
 				{
-					number -= tennerFactor * individualFactor;
-					tennerFactor /= 10;
-					individualFactor = number / tennerFactor;
-					if (individualFactor % 2 == 0)
+					digits[i] = numberStr.Substring(counter, 1); // 1 is split length
+					if (Convert.ToInt32(digits[i]) % 2 == 0)
 					{
-						counter++;
+						evenCounter++;
 					}
-				} while (tennerFactor > 1);
-				Console.WriteLine($"The number {numberStr} has {counter} even digits");
+					counter++;
+				}
+				//Int64 individualFactor = 0;
+				//Int64 tennerFactor = Convert.ToInt64(Math.Pow(10, numberStr.Length));
+				//do
+				//{
+				//	number -= tennerFactor * individualFactor;
+				//	tennerFactor /= 10;
+				//	individualFactor = number / tennerFactor;
+				//	if (individualFactor % 2 == 0)
+				//	{
+				//		counter++;
+				//	}
+				//} while (tennerFactor > 1);
+				Console.WriteLine($"The number {numberStr} has {evenCounter} even digits");
 			}
 
 		}
