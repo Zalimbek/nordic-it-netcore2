@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31205.134
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Words_start_with_A", "Words_start_with_A\Words_start_with_A.csproj", "{D7212B4B-9BE9-49F9-92A1-5D3BEA9F3A14}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reverse_letters_lowecase", "Reverse_letters_lowecase\Reverse_letters_lowecase.csproj", "{3883EF8A-286A-4A11-8CB8-619FC232CFC6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D7212B4B-9BE9-49F9-92A1-5D3BEA9F3A14}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D7212B4B-9BE9-49F9-92A1-5D3BEA9F3A14}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D7212B4B-9BE9-49F9-92A1-5D3BEA9F3A14}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D7212B4B-9BE9-49F9-92A1-5D3BEA9F3A14}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3883EF8A-286A-4A11-8CB8-619FC232CFC6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3883EF8A-286A-4A11-8CB8-619FC232CFC6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3883EF8A-286A-4A11-8CB8-619FC232CFC6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3883EF8A-286A-4A11-8CB8-619FC232CFC6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {DBF2A9F1-B945-4E24-BF7C-3683433F59F1}
+	EndGlobalSection
+EndGlobal
