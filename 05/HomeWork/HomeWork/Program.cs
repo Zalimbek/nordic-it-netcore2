@@ -30,6 +30,11 @@ namespace HomeWork
 				Console.WriteLine("Ошибка! Введено нечисловое значение!");
 				throw;
 			}
+			catch (OverflowException)
+			{
+				Console.WriteLine("Вы ввели неверное значение");
+				throw;
+			}
 
 			if (figureType == (int)Figure.Circle)
 			{
@@ -97,10 +102,7 @@ namespace HomeWork
 				S = Math.Round(visota * storona, 2);
 				P = Math.Round(visota + storona, 2);
 			}
-			else
-			{
-				Console.WriteLine("Вы ввели неверное значение");
-			}
+			
 			Console.WriteLine($"Площадь поверхности: {S}");
 			Console.WriteLine($"Длина периметра: {P}");
 
