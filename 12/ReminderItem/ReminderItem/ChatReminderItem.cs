@@ -25,9 +25,9 @@ namespace ReminderItem_new
 			}
 		}
 
-		public override void WriteProperties()
-		{
-			Console.WriteLine(Properties);
-		}
+		//public override void WriteProperties()
+		//{
+		//	Console.WriteLine(Properties);
+		//}
 	}
 }
