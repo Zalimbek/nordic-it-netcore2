@@ -5,18 +5,11 @@ using System.Collections;
 
 namespace LogInterface
 {
-	class ConsoleLogWriter: IEnumerable<FileLogWriter>, IDisposable, ILogWriter
+	class ConsoleLogWriter : ILogWriter
 	{
-		private List<FileLogWriter> _shellForlogs;
 
 		public ConsoleLogWriter()
 		{
-			_shellForlogs = new List<FileLogWriter>();
-		}
-
-		public void Add(FileLogWriter certainLog)
-		{
-			_shellForlogs.Add(certainLog);
 		}
 		public void LogInfo(string message)
 		{
@@ -32,23 +25,5 @@ namespace LogInterface
 			Console.WriteLine("{0:yyyy-MM-ddThh:mm:ss+0000}\tWarning\t{1}", DateTime.UtcNow, message);
 		}
 
-		public void Dispose()
-		{
-			if (_shellForlogs != null)
-			{
-				foreach (FileLogWriter writer in _shellForlogs)
-				{
-					writer?.Dispose();
-				}
-			}
-		}
-		public IEnumerator<FileLogWriter> GetEnumerator()
-		{
-			return _shellForlogs.GetEnumerator();
-		}
-		IEnumerator IEnumerable.GetEnumerator()
-		{
-			return GetEnumerator();
-		}
 	}
 }

@@ -10,9 +10,9 @@ namespace LogInterface
 		public string LogFileName { get; private set; }
 
 		private StreamWriter _fileLogWriter;
-		public FileLogWriter()
+		public FileLogWriter(string fileName)
 		{
-			LogFileName = @"C:\Users\zalimbekova\test1_log.txt";
+			LogFileName = fileName;
 			Stream stream = File.Open(
 				LogFileName,
 				FileMode.OpenOrCreate,
