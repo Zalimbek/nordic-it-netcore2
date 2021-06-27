@@ -6,90 +6,42 @@ using System.Collections;
 
 namespace LogInterface
 {
-	class MultipleLogWriter : ILogWriter, IDisposable, IEnumerable<ILogWriter>
+	class MultipleLogWriter : ILogWriter, IDisposable
 	{
-		//private List<ILogWriter> _internalWriters;
-		//public MultipleLogWriter()
-		//{
-		//	_internalWriters = new List<ILogWriter>();
-		//}
-		private List<ILogWriter> _internalWriters;
-		public void Add(ILogWriter logFileWriter)
-		{
-			_internalWriters.Add(logFileWriter);
-		}
-		public MultipleLogWriter()
-		{
-			_internalWriters = new List<ILogWriter>();
-		}
-		public string LogFileName { get; private set; }
-		private StreamWriter _fileLogWriter;
-		public void FileLogWriter()
-		{
-			LogFileName = @"C:\Users\zalimbekova\test1_log.txt";
-			Stream stream = File.Open(
-				LogFileName,
-				FileMode.OpenOrCreate,
-				FileAccess.ReadWrite,
-				FileShare.Read);
-			_fileLogWriter = new StreamWriter(stream);
-		}
+		private ILogWriter[] _internalWriters;
 
+		public MultipleLogWriter(ILogWriter[] logWriters)
+		{
+			_internalWriters = logWriters;
+		}
 		public void LogInfo(string message)
 		{
 			foreach (ILogWriter writer in _internalWriters)
 			{
-				Console.WriteLine("{0:yyyy-MM-ddThh:mm:ss+0000}\tInfo\t{1}", DateTime.UtcNow, message);
-				"{0:yyyy-MM-ddThh:mm:ss+0000}\tInfo\t{1}", DateTime.UtcNow, message);
-				_fileLogWriter.Flush();
+				writer.LogInfo(message);
 			}
 		}
-			public void LogError(string message)
-			{
-
-				foreach (ILogWriter writer in _internalWriters)
-				{
-					Console.WriteLine("{ 0:yyyy-MM-ddThh:mm:ss+0000}\tError\t{1}", DateTime.UtcNow, message);
-					//_fileLogWriter.WriteLine(
-					//"{0:yyyy-MM-ddThh:mm:ss+0000}\tError\t{1}", DateTime.UtcNow, message);
-					//_fileLogWriter.Flush();
-
-				}
-			}
-			public void LogWarning(string message)
-			{
-
-				foreach (ILogWriter writer in _internalWriters)
-				{
-					Console.WriteLine("{ 0:yyyy-MM-ddThh:mm:ss+0000}\tWarning\t{1}", DateTime.UtcNow, message);
-					//_fileLogWriter.WriteLine(
-					//"{0:yyyy-MM-ddThh:mm:ss+0000}\tWarning\t{1}", DateTime.UtcNow, message);
-					//_fileLogWriter.Flush();
-
-				}
-			}
-			public void Dispose()
-			{
-
-			if (_fileLogWriter != null)
-				_fileLogWriter.Dispose();
-			//if (_internalWriters != null)
-										 //{
-										 //	{
-										 //		_internalWriters.Clear();
-										 //		_internalWriters = null;
-										 //	}
-										 //}
-		}
-
-			public IEnumerator<ILogWriter> GetEnumerator()
-			{
-				throw new NotImplementedException();
-			}
-
-			IEnumerator IEnumerable.GetEnumerator()
+		public void LogError(string message)
 		{
-				throw new NotImplementedException();
+			foreach (ILogWriter writer in _internalWriters)
+			{
+				writer.LogError(message);
+			}
+		}
+		public void LogWarning(string message)
+		{
+			foreach (ILogWriter writer in _internalWriters)
+			{
+				writer.LogWarning(message);
+			}
+		}
+		public void Dispose()
+		{
+			foreach (var logWriter in _internalWriters)
+			{
+				if (logWriter is IDisposable && logWriter!= null)
+					(logWriter as IDisposable).Dispose();
 			}
 		}
 	}
+}

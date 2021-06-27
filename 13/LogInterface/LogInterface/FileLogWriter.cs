@@ -10,6 +10,8 @@ namespace LogInterface
 		public string LogFileName { get; private set; }
 
 		private StreamWriter _fileLogWriter;
+
+		private readonly string _logFormat = "{0:yyyy-MM-ddThh:mm:ss+0000}\tInfo\t{1}";
 		public FileLogWriter(string fileName)
 		{
 			LogFileName = fileName;
@@ -19,25 +21,35 @@ namespace LogInterface
 				FileAccess.ReadWrite,
 				FileShare.Read);
 			_fileLogWriter = new StreamWriter(stream);
+			_fileLogWriter.BaseStream.Seek(0, SeekOrigin.End);
 		}
 
 		public void LogInfo(string message)
 		{
-			_fileLogWriter.WriteLine(
-				"{0:yyyy-MM-ddThh:mm:ss+0000}\tInfo\t{1}", DateTime.UtcNow, message);
-			_fileLogWriter.Flush();
+			string record = GetLogRecord(message, LogRecordType.Info);
+			LogRecord(record);
 		}
+
 		public void LogError(string message)
 		{
-			_fileLogWriter.WriteLine(
-				"{0:yyyy-MM-ddThh:mm:ss+0000}\tError\t{1}", DateTime.UtcNow, message);
-			_fileLogWriter.Flush();
+			string record = GetLogRecord(message, LogRecordType.Error);
+			LogRecord(record);
 		}
+
 		public void LogWarning(string message)
 		{
-			_fileLogWriter.WriteLine(
-				"{0:yyyy-MM-ddThh:mm:ss+0000}\tWarning\t{1}", DateTime.UtcNow, message);
-			_fileLogWriter.Flush();
+			string record = GetLogRecord(message, LogRecordType.Warning);
+			LogRecord(record);
+		}
+
+		private string GetLogRecord(string message, LogRecordType logRecordType)
+		{
+			return string.Format(_logFormat, DateTime.UtcNow, logRecordType, message);
+		}
+
+		private void LogRecord(string record)
+		{
+			_fileLogWriter.WriteLine(record);
 		}
 
 		public void Dispose()

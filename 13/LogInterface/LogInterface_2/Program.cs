@@ -7,8 +7,9 @@ namespace LogInterface_2
 	{
 		static void Main(string[] args)
 		{
-			using var fileLogWriter1 = new FileLogWriter(@"C:\Users\zalimbekova\test1_log.txt");
-			//((ILogWriter)fileLogWriter1).LogInfo("starting the system");
+
+			using FileLogWriter fileLogWriter1 = new FileLogWriter(@"C:\Users\zalimbekova\test1_log.txt");
+			((ILogWriter)fileLogWriter1).LogInfo("starting the system");
 			//((ILogWriter)fileLogWriter1).LogWarning("the disc is almost full");
 			//((ILogWriter)fileLogWriter1).LogError("the system has crashed");
 
@@ -21,10 +22,12 @@ namespace LogInterface_2
 
 			//var logger = new List<MultipleLogWriter>();
 			//logger.Add(new FileLogWriter(@"C:\Users\zalimbekova\test1_log.txt"));
-			using (var logger = new MultipleLogWriter(fileLogWriter1,consoleWriter1))
+			ILogWriter[] writersCollection = new ILogWriter[2];
+			writersCollection[0] = fileLogWriter1;
+			writersCollection[1] = fileLogWriter1;
+
+			using (var logger = new MultipleLogWriter(writersCollection))
 			{
-				logger.Add(fileLogWriter1);
-				logger.Add(consoleWriter1);
 				logger.LogInfo("Test information message");
 				logger.LogWarning("Test warning message");
 				logger.LogError("Test error message");
