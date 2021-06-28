@@ -7,7 +7,7 @@ namespace LogInterface
 {
 	partial class ConsoleLogWriter : ILogWriter
 	{
-		private readonly string _logFormat = "{0:yyyy-MM-ddThh:mm:ss+0000}\tInfo\t{1}";
+		private readonly string _logFormat = "{0:yyyy-MM-ddThh:mm:ss+0000}\t{1}\t{2}";
 
 		public void LogInfo(string message)
 		{

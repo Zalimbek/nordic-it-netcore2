@@ -11,7 +11,7 @@ namespace LogInterface
 
 		private StreamWriter _fileLogWriter;
 
-		private readonly string _logFormat = "{0:yyyy-MM-ddThh:mm:ss+0000}\tInfo\t{1}";
+		private readonly string _logFormat = "{0:yyyy-MM-ddThh:mm:ss+0000}\t{1}\t{2}";
 		public FileLogWriter(string fileName)
 		{
 			LogFileName = fileName;
