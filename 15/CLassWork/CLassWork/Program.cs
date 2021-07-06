@@ -27,8 +27,12 @@ namespace Generic_methods
 			UpdateName(ref account1);
 
 			Console.WriteLine($"{nameof(account1)}={account1}");
+
+			AccountFabrique fabrique = new AccountFabrique();
+			var account = fabrique.CreateAccount<int>(10, "Nadia");
+			var account12 = fabrique.CreateAccount<Account<int>>();
 		}
-		private static void UpdateName(ref Account<int> account)
+		private static void UpdateName(ref Account<int> account) //
 		{
 			account.Name = "Mr." + account.Name;
 			account = new Account<int>(3, "Sveta");

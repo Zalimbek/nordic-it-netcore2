@@ -6,19 +6,19 @@ namespace HomeWork
 {
 	class LogWriterFactory
 	{
-		public ILogWriter GetLogWriter<T>(object parameters) where T : ILogWriter
+		public T GetLogWriter<T>(object parameters) where T : ILogWriter,new ()
 		{
-			if (T is ConsoleLogWriter)
+			if (T.Equals(ConsoleLogWriter))
 			{
 				return new T();
 			}
 
-			if (typeof(T) == FileLogWriter)
+			if (typeof(T) == "FileLogWriter")
 			{
 				return new T(string fileName);
 			}
 
-			if (typeof(T) == MultipleLogWriter)
+			else if (typeof(T) == MultipleLogWriter)
 			{
 
 				return new T(ILogWriter[] logWriters);
