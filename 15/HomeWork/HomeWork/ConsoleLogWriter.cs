@@ -5,7 +5,7 @@ using System.Collections;
 
 namespace HomeWork
 {
-	partial class ConsoleLogWriter : ILogWriter
+	public class ConsoleLogWriter : ILogWriter
 	{
 		private readonly string _logFormat = "{0:yyyy-MM-ddThh:mm:ss+0000}\t{1}\t{2}";
 

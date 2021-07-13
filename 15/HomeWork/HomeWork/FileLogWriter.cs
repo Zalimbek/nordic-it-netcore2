@@ -5,7 +5,7 @@ using System.IO;
 
 namespace HomeWork
 {
-	class FileLogWriter : ILogWriter, IDisposable
+	public class FileLogWriter : ILogWriter, IDisposable
 	{
 		public string LogFileName { get; set; }
 

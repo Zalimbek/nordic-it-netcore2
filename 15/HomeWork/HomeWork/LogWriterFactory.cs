@@ -15,30 +15,35 @@ namespace HomeWork
 		//	}
 		//	return _instance;
 		//}
-		public static ILogWriter GetLogWriter<T>(object parameters) where T : ILogWriter,new()
+		public static ILogWriter GetLogWriter<T>(object parameters) where T : ILogWriter
 		{
-			
-			ILogWriter result = new T();
+
 			
 			if (typeof(T)==typeof(ConsoleLogWriter))
 			{
-				parameters = null;
-				return result;
+				return new ConsoleLogWriter();
 			}
 
 			else if (typeof(T) == typeof(FileLogWriter))
 			{
-				((FileLogWriter)result).LogFileName=(string)parameters;
+				if (parameters.GetType() != typeof(string))
+					throw new ArgumentException($"Parameter \" {nameof(parameters)}\" " +
+												$"is assumed to be a string with a file name for " +
+												$"\"{typeof(T)}\"",nameof(parameters));
+				return new FileLogWriter((string)parameters);
 			}
 
 			else if (typeof(T) == typeof(MultipleLogWriter))
 			{
-
-				((MultipleLogWriter)result)._internalWriters = (ILogWriter[])parameters;
+				
+				if (parameters.GetType() != typeof(ILogWriter[]))
+					throw new ArgumentException($"Parameter \" {nameof(parameters)}\" " +
+												$"is assumed to be an ILogWriter[] with internal log writers" +
+												$"\"{typeof(T)}\"", nameof(parameters));
+				return new MultipleLogWriter((ILogWriter[])parameters);
 			}
 			else
 				throw new NotImplementedException();
-			return result;
 
 		}
 	}
