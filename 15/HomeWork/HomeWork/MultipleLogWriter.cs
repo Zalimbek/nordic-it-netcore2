@@ -6,9 +6,9 @@ using System.Collections;
 
 namespace HomeWork
 {
-	class MultipleLogWriter : ILogWriter, IDisposable
+	public class MultipleLogWriter : ILogWriter, IDisposable
 	{
-		private ILogWriter[] _internalWriters;
+		public ILogWriter[] _internalWriters;
 
 		public MultipleLogWriter(ILogWriter[] logWriters)
 		{

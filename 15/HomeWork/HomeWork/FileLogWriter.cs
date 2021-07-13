@@ -7,7 +7,7 @@ namespace HomeWork
 {
 	class FileLogWriter : ILogWriter, IDisposable
 	{
-		public string LogFileName { get; private set; }
+		public string LogFileName { get; set; }
 
 		private StreamWriter _fileLogWriter;
 

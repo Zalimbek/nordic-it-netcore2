@@ -4,25 +4,41 @@ using System.Text;
 
 namespace HomeWork
 {
-	class LogWriterFactory
+	public static class LogWriterFactory
 	{
-		public T GetLogWriter<T>(object parameters) where T : ILogWriter,new ()
+		//private static LogWriterFactory _instance;
+		//public static LogWriterFactory GetInstance()
+		//{
+		//	if (_instance == null)
+		//	{
+		//		_instance = new LogWriterFactory();
+		//	}
+		//	return _instance;
+		//}
+		public static ILogWriter GetLogWriter<T>(object parameters) where T : ILogWriter,new()
 		{
-			if (T.Equals(ConsoleLogWriter))
+			
+			ILogWriter result = new T();
+			
+			if (typeof(T)==typeof(ConsoleLogWriter))
 			{
-				return new T();
+				parameters = null;
+				return result;
 			}
 
-			if (typeof(T) == "FileLogWriter")
+			else if (typeof(T) == typeof(FileLogWriter))
 			{
-				return new T(string fileName);
+				((FileLogWriter)result).LogFileName=(string)parameters;
 			}
 
-			else if (typeof(T) == MultipleLogWriter)
+			else if (typeof(T) == typeof(MultipleLogWriter))
 			{
 
-				return new T(ILogWriter[] logWriters);
+				((MultipleLogWriter)result)._internalWriters = (ILogWriter[])parameters;
 			}
+			else
+				throw new NotImplementedException();
+			return result;
 
 		}
 	}
